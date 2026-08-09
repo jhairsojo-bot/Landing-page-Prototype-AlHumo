@@ -2,6 +2,13 @@ const vistaInicio = document.getElementById("vista-inicio");
 const vistaMenu = document.getElementById("vista-menu");
 const tituloPagina = document.title;
 
+function enfocar(elemento) {
+  if (!elemento) return;
+  elemento.setAttribute("tabindex", "-1");
+  elemento.focus({ preventScroll: true });
+  elemento.removeAttribute("tabindex");
+}
+
 function cambiarVista(hash) {
   const esMenu = hash === "#/menu";
 
@@ -12,14 +19,22 @@ function cambiarVista(hash) {
     ? "Menú — AL HUMO"
     : tituloPagina;
 
-  const destino = esMenu
-    ? document.getElementById("menu-titulo")
-    : document.getElementById("hero-titulo");
+  if (esMenu) {
+    enfocar(document.getElementById("menu-titulo"));
+    window.scrollTo(0, 0);
+    return;
+  }
 
-  if (destino) {
-    destino.setAttribute("tabindex", "-1");
-    destino.focus();
-    destino.removeAttribute("tabindex");
+  const idSeccion = hash.slice(1);
+  const seccion = idSeccion
+    ? document.getElementById(idSeccion)
+    : null;
+
+  if (seccion) {
+    seccion.scrollIntoView();
+    enfocar(seccion);
+  } else {
+    window.scrollTo(0, 0);
   }
 }
 

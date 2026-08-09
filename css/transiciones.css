@@ -1,0 +1,54 @@
+/* ============================================================
+   AL HUMO — Transición de vistas
+   Cortina de humo con borde de brasa entre landing y menú.
+   ============================================================ */
+
+.transicion-humo {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-fondo-alt) 0%,
+    var(--color-fondo) 55%,
+    #0D0B0A 100%
+  );
+  transition:
+    transform 340ms ease-out,
+    opacity 340ms ease-out;
+}
+
+.transicion-humo-brasa {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-acento) 25%,
+    var(--color-acento-alt) 50%,
+    var(--color-acento) 75%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 24px 6px rgba(185, 74, 50, 0.55),
+    0 0 60px 18px rgba(214, 168, 95, 0.28);
+}
+
+.transicion-humo.entrando {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.transicion-humo.saliendo {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition:
+    transform 420ms ease-in,
+    opacity 420ms ease-in;
+}

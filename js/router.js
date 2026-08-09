@@ -1,6 +1,13 @@
 const vistaInicio = document.getElementById("vista-inicio");
 const vistaMenu = document.getElementById("vista-menu");
+const transicionHumo = document.getElementById("transicion-humo");
 const tituloPagina = document.title;
+
+const DURACION_EXTRA = 80;
+
+let transicionando = false;
+let hashPendiente = false;
+let primerCambio = true;
 
 function enfocar(elemento) {
   if (!elemento) return;
@@ -9,7 +16,7 @@ function enfocar(elemento) {
   elemento.removeAttribute("tabindex");
 }
 
-function cambiarVista(hash) {
+function aplicarVista(hash) {
   const esMenu = hash === "#/menu";
 
   vistaInicio.hidden = esMenu;
@@ -38,7 +45,54 @@ function cambiarVista(hash) {
   }
 }
 
+function duracionTransicion() {
+  const duracion = getComputedStyle(transicionHumo).transitionDuration;
+  return parseFloat(duracion) * 1000 || 0;
+}
+
+function esperarFase(clase) {
+  return new Promise((resolver) => {
+    transicionHumo.classList.add(clase);
+    setTimeout(resolver, duracionTransicion() + DURACION_EXTRA);
+  });
+}
+
+async function transicionar(hash) {
+  transicionando = true;
+
+  await esperarFase("entrando");
+  aplicarVista(hash);
+  transicionHumo.classList.remove("entrando");
+  await esperarFase("saliendo");
+  transicionHumo.classList.remove("saliendo");
+
+  transicionando = false;
+
+  if (hashPendiente) {
+    hashPendiente = false;
+    manejarHash();
+  }
+}
+
+function cambiarVista(hash) {
+  const esMenu = hash === "#/menu";
+  const vistaActualEsMenu = !vistaMenu.hidden;
+  const primerCarga = primerCambio;
+  primerCambio = false;
+
+  if (!transicionando && !primerCarga && esMenu !== vistaActualEsMenu) {
+    transicionar(hash);
+    return;
+  }
+
+  aplicarVista(hash);
+}
+
 function manejarHash() {
+  if (transicionando) {
+    hashPendiente = true;
+    return;
+  }
   cambiarVista(location.hash);
 }
 

@@ -1,0 +1,131 @@
+/* ============================================================
+   AL HUMO — Vista de Menú
+   Filtros, categorías y productos.
+   ============================================================ */
+
+/* --- Filtros --- */
+
+.menu-filtros {
+  position: sticky;
+  top: 4.5rem;
+  z-index: 40;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--espacio-sm);
+  margin-bottom: var(--espacio-xl);
+  justify-content: flex-start;
+  padding: var(--espacio-md) 0;
+  background: var(--color-fondo);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.menu-filtros::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-filtro {
+  padding: var(--espacio-xs) var(--espacio-md);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-texto-suave);
+  white-space: nowrap;
+  transition: background-color var(--transicion), color var(--transicion),
+    border-color var(--transicion);
+}
+
+.menu-filtro:hover {
+  border-color: var(--color-acento);
+  color: var(--color-texto);
+}
+
+.menu-filtro-activo {
+  background: var(--color-acento);
+  border-color: var(--color-acento);
+  color: var(--color-texto);
+}
+
+/* --- Secciones de categoría --- */
+
+.menu-seccion {
+  margin-bottom: var(--espacio-xl);
+}
+
+.menu-categoria-titulo {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--color-acento);
+  margin-bottom: var(--espacio-md);
+  padding-bottom: var(--espacio-sm);
+  border-bottom: 2px solid var(--color-acento);
+}
+
+/* --- Grid de productos --- */
+
+.menu-productos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-xs);
+}
+
+/* --- Producto individual --- */
+
+.menu-producto {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--espacio-md);
+  padding: var(--espacio-sm) 0;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.menu-producto:last-child {
+  border-bottom: none;
+}
+
+.menu-producto-info {
+  flex: 1;
+}
+
+.menu-producto-nombre {
+  margin: 0 0 0.15rem;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+.menu-producto-descripcion {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+.menu-producto-precio {
+  white-space: nowrap;
+  font-family: var(--fuente-titulos);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-acento-alt);
+}
+
+/* --- Botón volver --- */
+
+.menu-volver {
+  display: block;
+  margin: var(--espacio-xl) auto 0;
+  text-align: center;
+}
+
+/* --- Responsive: 2 columnas en desktop --- */
+
+@media (min-width: 640px) {
+  .menu-productos-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacio-sm) var(--espacio-lg);
+  }
+}

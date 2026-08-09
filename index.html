@@ -7,6 +7,7 @@
   <title>AL HUMO — Sabores de nuestro querido Putumayo</title>
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/menu.css" />
 </head>
 <body>
   <a class="enlace-salto" href="#contenido-principal">Saltar al contenido principal</a>
@@ -199,8 +200,13 @@
 
     <div id="vista-menu" class="vista" hidden>
       <section class="seccion" aria-labelledby="menu-titulo">
-        <h1 id="menu-titulo">Menú</h1>
-        <div id="contenedor-menu"></div>
+        <div class="contenedor">
+          <h1 id="menu-titulo">Menú</h1>
+          <div id="contenedor-menu"></div>
+          <div class="menu-volver">
+            <a class="boton boton-secundario" href="#inicio">Volver al inicio</a>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -245,6 +251,8 @@
 
   <script src="js/data.js" defer></script>
   <script src="js/destacados.js" defer></script>
+  <script src="js/menu.js" defer></script>
+  <script src="js/router.js" defer></script>
   <script src="js/navbar.js" defer></script>
 </body>
 </html>

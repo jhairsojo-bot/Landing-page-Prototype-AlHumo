@@ -1,6 +1,22 @@
 const botonMenu = document.getElementById('boton-menu');
 const nav = document.getElementById('nav-principal');
 const etiquetaBoton = botonMenu.querySelector('.visualmente-oculto');
+const enlacesNav = nav.querySelectorAll('a');
+
+function marcarEnlaceActivo() {
+  const objetivo = location.hash || '#inicio';
+
+  enlacesNav.forEach((enlace) => {
+    const activo = enlace.getAttribute('href') === objetivo;
+    enlace.classList.toggle('activo', activo);
+
+    if (activo) {
+      enlace.setAttribute('aria-current', 'true');
+    } else {
+      enlace.removeAttribute('aria-current');
+    }
+  });
+}
 
 function menuAbierto() {
   return botonMenu.getAttribute('aria-expanded') === 'true';
@@ -41,3 +57,6 @@ window.addEventListener('resize', () => {
     alternarMenu(false);
   }
 });
+
+window.addEventListener('hashchange', marcarEnlaceActivo);
+marcarEnlaceActivo();

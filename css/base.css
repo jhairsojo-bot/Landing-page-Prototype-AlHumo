@@ -1,0 +1,159 @@
+/* ============================================================
+   AL HUMO — Estilos base
+   Tokens de diseño, reset y tipografía global.
+   ============================================================ */
+
+:root {
+  /* Paleta de marca (propuesta para prototipo) */
+  --color-fondo: #171513;
+  --color-fondo-alt: #24201C;
+  --color-acento: #B94A32;
+  --color-acento-alt: #D6A85F;
+  --color-texto: #F5EFE6;
+  --color-texto-suave: #BDB3A5;
+  --color-borde: #3A322B;
+
+  /* Tipografías */
+  --fuente-titulos: Georgia, "Times New Roman", serif;
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  /* Escala de espaciado */
+  --espacio-xs: 0.5rem;
+  --espacio-sm: 0.75rem;
+  --espacio-md: 1.25rem;
+  --espacio-lg: 2rem;
+  --espacio-xl: 3.5rem;
+  --espacio-2xl: 5rem;
+
+  /* Radios y sombras */
+  --radio-sm: 0.375rem;
+  --radio-md: 0.75rem;
+  --radio-lg: 1.25rem;
+  --sombra-suave: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  /* Transición */
+  --transicion: 200ms ease;
+
+  /* Contenedor */
+  --ancho-contenedor: 72rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 var(--espacio-md);
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+
+p {
+  margin: 0 0 var(--espacio-md);
+}
+
+a {
+  color: var(--color-acento-alt);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-acento-alt);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-acento);
+  color: var(--color-texto);
+}
+
+/* Utilidades */
+
+.contenedor {
+  width: min(100% - 2rem, var(--ancho-contenedor));
+  margin-inline: auto;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.enlace-salto {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: var(--espacio-sm) var(--espacio-md);
+  background: var(--color-acento);
+  color: var(--color-texto);
+  border-radius: var(--radio-sm);
+}
+
+.enlace-salto:focus {
+  top: 1rem;
+}
+
+/* --- Accesibilidad: movimiento reducido --- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

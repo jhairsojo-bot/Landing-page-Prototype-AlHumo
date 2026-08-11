@@ -5,24 +5,57 @@
 
 /* --- Filtros --- */
 
-.menu-filtros {
+.menu-filtros-toolbar {
   position: sticky;
   top: 4.5rem;
   z-index: 40;
   display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  margin-bottom: var(--espacio-xl);
+  background: var(--color-fondo);
+}
+
+.menu-filtros {
+  display: flex;
+  flex: 1;
+  min-width: 0;
   flex-wrap: nowrap;
   gap: var(--espacio-sm);
-  margin-bottom: var(--espacio-xl);
-  justify-content: flex-start;
-  padding: var(--espacio-md) 0;
-  background: var(--color-fondo);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  padding: var(--espacio-md) 0;
 }
 
 .menu-filtros::-webkit-scrollbar {
   display: none;
+}
+
+.menu-flecha {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-borde);
+  background: var(--color-fondo);
+  color: var(--color-acento);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity var(--transicion), border-color var(--transicion);
+  padding: 0;
+}
+
+.menu-flecha:hover {
+  border-color: var(--color-acento);
+}
+
+.menu-flecha:disabled {
+  opacity: 0.3;
+  cursor: default;
+  border-color: var(--color-borde);
 }
 
 .menu-filtro {
@@ -127,6 +160,9 @@
   .menu-productos-grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--espacio-sm) var(--espacio-lg);
+  }
+  .menu-flecha {
+    display: none;
   }
 }
 

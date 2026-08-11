@@ -74,7 +74,42 @@ function filtrarPor(categoria, botonActivo) {
   productosContainer.appendChild(renderizarMenu(categoria));
 }
 
+function actualizarFlechas() {
+  const scrollLeft = filtrosContainer.scrollLeft;
+  const maxScroll = filtrosContainer.scrollWidth - filtrosContainer.clientWidth;
+  flechaIzq.disabled = scrollLeft <= 0;
+  flechaDer.disabled = scrollLeft >= maxScroll - 1;
+}
+
+const toolbar = document.createElement("div");
+toolbar.className = "menu-filtros-toolbar";
+
+const flechaIzq = document.createElement("button");
+flechaIzq.className = "menu-flecha menu-flecha-izq";
+flechaIzq.type = "button";
+flechaIzq.setAttribute("aria-label", "Deslizar categorías a la izquierda");
+flechaIzq.innerHTML = "&#9664;";
+flechaIzq.addEventListener("click", function () {
+  filtrosContainer.scrollBy({ left: -200, behavior: "smooth" });
+});
+
+const flechaDer = document.createElement("button");
+flechaDer.className = "menu-flecha menu-flecha-der";
+flechaDer.type = "button";
+flechaDer.setAttribute("aria-label", "Deslizar categorías a la derecha");
+flechaDer.innerHTML = "&#9654;";
+flechaDer.addEventListener("click", function () {
+  filtrosContainer.scrollBy({ left: 200, behavior: "smooth" });
+});
+
+filtrosContainer.addEventListener("scroll", actualizarFlechas);
+
+toolbar.appendChild(flechaIzq);
+toolbar.appendChild(filtrosContainer);
+toolbar.appendChild(flechaDer);
+
 crearFiltros();
-contenedorMenu.appendChild(filtrosContainer);
+contenedorMenu.appendChild(toolbar);
 contenedorMenu.appendChild(productosContainer);
 productosContainer.appendChild(renderizarMenu("Todos"));
+requestAnimationFrame(actualizarFlechas);

@@ -129,3 +129,19 @@
     gap: var(--espacio-sm) var(--espacio-lg);
   }
 }
+
+/* --- Ayuda para deslizar categorías (solo móvil) --- */
+
+.menu-ayuda-deslizar {
+  display: none;
+  margin: calc(-1 * var(--espacio-md)) 0 var(--espacio-sm);
+  font-size: 0.8rem;
+  text-align: left;
+  color: var(--color-texto-suave);
+}
+
+@media (max-width: 639px) {
+  .menu-ayuda-deslizar {
+    display: block;
+  }
+}

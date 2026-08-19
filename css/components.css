@@ -506,6 +506,13 @@
   font-size: 1.05rem;
 }
 
+.ubicacion-dias {
+  margin-top: var(--espacio-sm);
+  margin-bottom: 0;
+  font-weight: 600;
+  color: var(--color-acento-alt);
+}
+
 .ubicacion-nota {
   font-size: 0.8rem;
   font-style: italic;

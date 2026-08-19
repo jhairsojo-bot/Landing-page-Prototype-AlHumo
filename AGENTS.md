@@ -12,6 +12,7 @@ Static single-page prototype site for "AL HUMO" (a Putumayo restaurant demo). No
 - `index.html` contains two views toggled by `hidden`: `#vista-inicio` (landing) and `#vista-menu`.
 - Hash routing is plain classic scripts (no modules, shared globals), loaded `defer` in this exact order: `js/data.js` → `js/destacados.js` → `js/menu.js` → `js/router.js` → `js/navbar.js`. `data.js` must stay first (defines globals `platosDestacados` and `menuCompleto`).
 - Content for "Platos destacados" cards and the menu page lives in `js/data.js`, not in HTML.
+- The menu page has a toolbar (`.menu-filtros-toolbar`, sticky) wrapping category filter chips (`.menu-filtros`, `overflow-x: auto`) and left/right arrow buttons (`.menu-flecha`) for scrolling on mobile. Arrows are hidden on desktop via `@media (min-width: 640px)`. The hint text `.menu-ayuda-deslizar` is also mobile-only.
 
 ## Router / scroll gotchas (easy to break)
 
@@ -19,3 +20,4 @@ Static single-page prototype site for "AL HUMO" (a Putumayo restaurant demo). No
 - NEVER call `.focus()` without `preventScroll` inside a hashchange handler: with `scroll-behavior: smooth` (base.css) it starts a smooth scroll to the focused element and overrides section navigation (hero/top steals the scroll — the bug fixed here).
 - When a section hash is clicked while on `#/menu`, the native anchor scroll silently fails (target view is `display:none` at click time), so the router must scroll manually after unhiding the view.
 - `scroll-padding-top: 5rem` (base.css) offsets sections under the sticky navbar — don't remove it; don't add per-section `scroll-margin` on top of it.
+- `menu.js` `actualizarFlechas()` must run after layout is computed (wrapped in `requestAnimationFrame`). Calling it synchronously during script init returns stale `scrollWidth`/`clientWidth` values and disables the wrong arrows.

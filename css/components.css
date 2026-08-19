@@ -47,17 +47,18 @@
   min-height: 4.5rem;
 }
 
-.navbar-logo {
-  font-family: var(--fuente-titulos);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-texto);
-  white-space: nowrap;
+.logo-oficial {
+  filter: brightness(0) invert(1);
 }
 
-.navbar-logo span {
-  color: var(--color-acento);
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 2.25rem;
+  width: auto;
 }
 
 .navbar-lista {
@@ -267,11 +268,12 @@
 
 .hero-nombre {
   margin-bottom: var(--espacio-sm);
-  font-size: clamp(3.5rem, 10vw, 7rem);
 }
 
-.hero-nombre span {
-  color: var(--color-acento);
+.hero-logo {
+  width: min(36rem, 88vw);
+  height: auto;
+  margin-inline: auto;
 }
 
 .hero-frase {
@@ -567,15 +569,12 @@
 }
 
 .pie-logo {
-  font-family: var(--fuente-titulos);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-texto);
+  display: inline-block;
 }
 
-.pie-logo span {
-  color: var(--color-acento);
+.pie-logo img {
+  height: 2.5rem;
+  width: auto;
 }
 
 .pie-aviso {
